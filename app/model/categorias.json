@@ -1,0 +1,79 @@
+[
+    {
+        "id": "1",
+        "codigo": "10",
+        "categoria": "Bebidas",
+        "EsPadre": "1",
+        "EsHijoDe": null
+    },
+    {
+        "id": "2",
+        "codigo": "20",
+        "categoria": "Snack",
+        "EsPadre": "1",
+        "EsHijoDe": null
+    },
+    {
+        "id": "3",
+        "codigo": "30",
+        "categoria": "Papeler\u00eda",
+        "EsPadre": "1",
+        "EsHijoDe": null
+    },
+    {
+        "id": "4",
+        "codigo": "40",
+        "categoria": "Servicios",
+        "EsPadre": "1",
+        "EsHijoDe": null
+    },
+    {
+        "id": "5",
+        "codigo": "50",
+        "categoria": "Impresiones",
+        "EsPadre": "1",
+        "EsHijoDe": null
+    },
+    {
+        "id": "6",
+        "codigo": "60",
+        "categoria": "Accesorios y Equipos",
+        "EsPadre": "1",
+        "EsHijoDe": null
+    },
+    {
+        "id": "7",
+        "codigo": "1001",
+        "categoria": "Bebidas 15%",
+        "EsPadre": null,
+        "EsHijoDe": "10"
+    },
+    {
+        "id": "8",
+        "codigo": "1003",
+        "categoria": "Bebidas 0%",
+        "EsPadre": null,
+        "EsHijoDe": "10"
+    },
+    {
+        "id": "9",
+        "codigo": "2001",
+        "categoria": "Bimbo",
+        "EsPadre": null,
+        "EsHijoDe": "20"
+    },
+    {
+        "id": "10",
+        "codigo": "2002",
+        "categoria": "Sabritas",
+        "EsPadre": null,
+        "EsHijoDe": "20"
+    },
+    {
+        "id": "11",
+        "codigo": "2003",
+        "categoria": "Dulces",
+        "EsPadre": null,
+        "EsHijoDe": "20"
+    }
+]
