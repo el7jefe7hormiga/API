@@ -99,7 +99,7 @@ Se recibe algo asi:
   ],
 }
 
-4. el acces-token es que se necesita para hacer consultas a la API.
+4. el acces-token es el que se necesita para hacer consultas a la API.
 
 5. utilizar la api:
 a. metodo GET
