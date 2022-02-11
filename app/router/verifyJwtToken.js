@@ -6,7 +6,7 @@ const User = db.user;
 
 verifyToken = (req, res, next) => {
 	let token = req.headers['x-access-token']
-  
+
 	if (!token){
 		return res.status(200).send({ 
 			auth: false, 

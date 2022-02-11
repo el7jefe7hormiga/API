@@ -1,3 +1,4 @@
+﻿const { cls } = require('sequelize');
 const db = require('../config/db.config.js');
 const Producto = db.producto;
 const Op = db.Sequelize.Op;
@@ -10,12 +11,22 @@ CONTROLADOR DE LOS PRODUCTOS
 
 // Mostrar lista de productos
 exports.verProductos = (req, res) => {
-    Producto.findAll({
-    where: {
-        eliminadoEl: null
-    }}).then(productos => {
+   
+    const param = Object.keys(req.query).length==0 ? "codigo" :  req.query._sort.split(' ')
+
+    /*
+    http:localhost:5580/api/admin/productos?_sort=producto
+    const title = req.query.title;
+    **SINTAXIS:  ?_sort=campo [desc]
+    */
+
+    Producto.findAll(
+      {order: [ param ] },
+      {where: { eliminadoEl: null} },
+    ).then(productos => {
 		res.status(200).json({
 			"mensage":"Lista de productos",
+      "orden": param,
 			"productos": productos
 		})
 	}).catch(err => {
@@ -29,9 +40,9 @@ exports.verProductos = (req, res) => {
 // Mostrar UN producto
 exports.verProducto = (req, res) => {
     const param_id = req.params.id;
-    User.findOne({
+    Producto.findOne({
         where: {
-            id: param_id,
+            codigo: param_id,
             eliminadoEl: null
         }})
         .then( producto => {
@@ -131,32 +142,32 @@ exports.eliminarProducto = (req, res) => {
 
 // Buscar UN producto
 exports.buscarProducto = (req, res) => {
-    const param_prod = req.params.prod;
-    Producto.findAll({
-        where: {
-            producto: { [Op.like]: '%' + param_prod + '%' },
-        }
-    }).then(producto => {
-        if (!producto) {
-            return res.status(200).json({
-                "mensage": "Producto no encontrado!",
-                "producto": null
-            })
-        }
-        res.status(200).json({
-            "mensage": "Mostrando la producto...",
-            "producto": producto
-        })
-    }, () => {
-        // no se encontró el registro o está eliminado
-        res.status(200).json({
-            "mensage": "Producto no existe o está eliminado.",
-            "producto": null // param_prod
-        })
-    }).catch(err => {
-        res.status(200).json({
-            "mensage": "No se puede mostrar la producto.",
-            "error": err
-        })
-    })
+  const param_prod = req.params.prod;
+  Producto.findAll({
+      where: {
+          producto: { [Op.like]: '%' + param_prod + '%' },
+      }
+  }).then(producto => {
+      if (!producto) {
+          return res.status(200).json({
+              "mensage": "Producto no encontrado!",
+              "producto": null
+          })
+      }
+      res.status(200).json({
+          "mensage": "Mostrando el producto...",
+          "producto": producto
+      })
+  }, () => {
+      // no se encontró el registro o está eliminado
+      res.status(200).json({
+          "mensage": "Producto no existe o está eliminado.",
+          "producto": null // param_prod
+      })
+  }).catch(err => {
+      res.status(200).json({
+          "mensage": "No se puede mostrar el producto.",
+          "error": err
+      })
+  })
 }

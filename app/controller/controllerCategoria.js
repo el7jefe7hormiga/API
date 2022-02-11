@@ -1,3 +1,4 @@
+const { json } = require('sequelize');
 const db = require('../config/db.config.js');
 const Categoria = db.categoria;
 const Op = db.Sequelize.Op;
@@ -10,15 +11,20 @@ CONTROLADOR DE LOS CATEGORIAS
 
 // Mostrar lista de categorias
 exports.verCategorias = (req, res) => {
+ 
+    const param = Object.keys(req.query).length==0 ? "codigo" :  req.query._sort.split(' ')
+
     Categoria.findAll(
-        { order: ["codigo"] },
+        { order: [ param ] },
         { where: { eliminadoEl: null } }
     ).then(categorias => {
         res.status(200).json({
             "mensage": "Lista de categorias",
+             "orden": param,
             "categorias": categorias
         })
     }).catch(err => {
+        console.error("ALGO PASO AL OBTENER LAS CATEGORIAS!!");
         res.status(200).json({
             "mensage": "No se pueden listar las categorias.",
             "error": err
@@ -166,6 +172,7 @@ exports.buscarCategoria = (req, res) => {
 // Mostrar las categorias Padres
 exports.Padres = (req, res) => {    
     Categoria.findAll(
+        { attributes: ['categoria'] },
         { where: { EsPadre: "1" }},
         { order: 'codigo' }
     ).then(padres => {            

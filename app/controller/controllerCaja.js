@@ -21,7 +21,7 @@ exports.userContent = (req, res) => {
 		}]
 	}).then(user => {
 		res.status(200).json({
-			"uescripción": ".... CAJA ...",
+			"descripción": ".... CAJA ...",
 			"usuario": user
 		});
 	}).catch(err => {

@@ -39,6 +39,7 @@ checkDuplicateUserNameOrEmail = (req, res, next) => {
 }
 
 checkRolesExisted = (req, res, next) => {	
+  console.log('roles:', req.body)
 	for(let i=0; i<req.body.roles.length; i++){
 		if(!ROLEs.includes(req.body.roles[i].toUpperCase())){
 			res.status(200).json({

@@ -25,6 +25,14 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE(6),
             defaultValue: null
         },
+        icon: {
+            type: Sequelize.STRING(20),
+            allowsNull: true
+        },
+        imagen: {
+            type: Sequelize.STRING(255),
+            allowsNull: true
+        }
     });
 
     return Categoria;

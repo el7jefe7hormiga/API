@@ -3,6 +3,7 @@ const User = db.user;
 const Role = db.role;
 const Op = db.Sequelize.Op;
 
+var bcrypt = require('bcryptjs');
 //const { Datatypes } = require("sequelize")
 
 /*

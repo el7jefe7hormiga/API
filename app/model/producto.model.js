@@ -94,3 +94,61 @@ ALTER TABLE `tproductos`
   ADD UNIQUE KEY `codigo mega` (`codigo_mega`),
   ADD KEY `codigo_cat` (`codigo_cat`);
 */
+
+
+/* 
+SHOW CREATE TABLE tProdutos
+
+CREATE TABLE `tproductos` (
+ `codigo` varchar(30) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Codigo de barras',
+ `codigo_mega` varchar(4) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Codigo corto de hasta 4 digitos',
+ `codigo_cat` varchar(6) COLLATE utf8_spanish_ci NOT NULL,
+ `precio_de_venta` decimal(30,2) DEFAULT NULL,
+ `precio_de_compra` decimal(30,2) DEFAULT NULL,
+ `existe_min` int(10) DEFAULT NULL,
+ `producto` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+ `existe_actual` int(10) DEFAULT NULL,
+ `inventariable` tinyint(1) NOT NULL COMMENT 'Se contabiliza en el inventario ?',
+ `IVA` decimal(10,4) DEFAULT NULL,
+ `IEPS` decimal(10,4) DEFAULT NULL,
+ `estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+ `f_ultimacompra` datetime DEFAULT NULL COMMENT 'Fecha de la ultima compra',
+ `c_ultimacompra` decimal(10,2) DEFAULT NULL COMMENT 'Cantidad de la ultima compra',
+ `IdGpoFac` int(10) DEFAULT NULL,
+ `descmax` decimal(10,2) DEFAULT NULL COMMENT 'Porcentaje de descuento maximo aplicable',
+ PRIMARY KEY (`codigo`),
+ UNIQUE KEY `codigo mega` (`codigo_mega`),
+ KEY `codigo_cat` (`codigo_cat`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci
+
+
+SHOW CREATE TABLE productos
+CREATE TABLE `productos` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `codigo` varchar(6) COLLATE utf8_spanish_ci NOT NULL,
+ `codigo_mega` varchar(4) COLLATE utf8_spanish_ci NOT NULL,
+ `codigo_cat` varchar(6) COLLATE utf8_spanish_ci NOT NULL,
+ `precio_de_venta` decimal(30,2) DEFAULT NULL,
+ `precio_de_compra` decimal(30,2) DEFAULT NULL,
+ `existe_min` int(11) DEFAULT NULL,
+ `producto` varchar(255) COLLATE utf8_spanish_ci DEFAULT NULL,
+ `existe_actual` int(11) DEFAULT NULL,
+ `inventariable` int(11) NOT NULL,
+ `IVA` decimal(10,4) DEFAULT NULL,
+ `IEPS` decimal(10,4) DEFAULT NULL,
+ `estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+ `f_ultimacompra` datetime(6) DEFAULT NULL,
+ `c_ultimacompra` decimal(10,2) DEFAULT NULL,
+ `IdGpoFac` int(11) DEFAULT NULL,
+ `descmax` decimal(10,2) DEFAULT NULL,
+ `eliminadoEl` datetime(6) DEFAULT NULL,
+ `createdAt` datetime NOT NULL,
+ `updatedAt` datetime NOT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `codigo_mega` (`codigo_mega`),
+ UNIQUE KEY `codigo` (`codigo`) USING BTREE,
+ KEY `codigo_cat` (`codigo_cat`),
+ CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`codigo_cat`) REFERENCES `categorias` (`codigo`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci
+
+*/
