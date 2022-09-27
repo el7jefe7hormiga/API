@@ -18,16 +18,26 @@ const Op = db.Sequelize.Op;
 // usar forse: false para que no limpiea las tablas
 db.sequelize.sync({force: false}).then(() => {
   //console.log('Drop and Resync with { force: true }');
+  
+  /*
+  Es la primera vez que vas a utilizar esta API:
+  1. deshabilita la linea // inicio(), esto es para crear los roles y al usuario inicial (administrativo)
+  ya que él será el unico que podra crear a mas usuarios. 
+  */
   //inicio(); // <-- habilitarlo para crear los registros, cuando forse=true
 });
  
 //require('./app/route/project.route.js')(app);
  
 // Create a Server
-var server = app.listen(5580, function () {
-   var host = server.address().address
-   var port = server.address().port
+var server = app.listen(5580, function (err) {
+   /*
+   var host = server.settings.address
+   var port = server.settings.port
    console.log("App listening at http:// %s : %s", host, port)
+   */
+   if (err) console.error("\u2718 Error in server setup")
+   console.log("\u2713 Server listening on Port", 5580)
 })
 
 
@@ -35,7 +45,32 @@ function inicio(){
 	Role.create({id: 1,	nombre: "CAJERO" })	
 	Role.create({id: 2,	nombre: "SUPERVISOR" })	
 	Role.create({id: 3,	nombre: "ADMIN"	})
-	// crear al primer usuario (admin aLL:hormiga77)
+	// crear a los usuarios (admin aLL:hormiga77)
+	data = {
+		nombre: "Aarón López",
+		username: "aLL",
+		email: "all@mail.com",
+		password: bcrypt.hashSync("hormiga77", 8)
+	}
+	crea(data,["ADMIN", "SUPERVISOR"])
+
+	data = {
+			nombre: "Yoly Langarica",
+			username: "yoly",
+			email: "yoly@mail.com",
+			password: bcrypt.hashSync("jefa77", 8)
+	}
+	crea(data, ["SUPERVISOR"])
+
+	data = {
+			nombre: "Sidney López",
+			username: "pininane",
+			email: "sidney@mail.com",
+			password: bcrypt.hashSync("jefita01", 8)
+	}
+	crea(data,["CAJERO"])
+
+	/*
 	Admin.create({
 		nombre: "Aarón",
 		username: "aLL",
@@ -49,7 +84,20 @@ function inicio(){
 			user.setRoles(roles).then(() => {
 				console.log("Usuario registrado !! " + user)
 			})
-		}).catch(err => { console.log("Error -> " + err) })
-	}).catch(err => { console.log("Falló! Error -> " + err)	})
+		}).catch(err => { console.error("Error -> " + err) })
+	}).catch(err => { console.error("Falló! Error -> " + err)	})
+	*/
+}
 
+function crea(data, tipo){
+	Admin.create(data).then(user => {
+		//console.log("	********* USUARIO AGREGADO  *********")
+		Role.findAll({	where: {nombre: { [Op.or]: tipo } }
+		}).then(roles => {
+			//console.log("	***** Buscando el id del rol que le asingé ******")
+			user.setRoles(roles).then(() => {
+				console.log("Usuario registrado !! ")
+			})
+		}).catch(err => { console.error("Error -> " + err) })
+	}).catch(err => { console.error("Falló! Error -> " + err)	})
 }

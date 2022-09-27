@@ -11,18 +11,13 @@ module.exports = (sequelize, Sequelize) => {
 	  },
 	  password: {
 		  type: Sequelize.STRING
-	  },
-	  eliminadoEl: {
-		  type: Sequelize.DATE(6),
-		  defaultValue: null
 	  }
-	/*}, {
-			// don't delete database entries but set the newly added attribute deletedAt
-			// to the current date (when deletion was done). paranoid will only work if
-			// timestamps are enabled
-			paranoid: true,
-			// And deletedAt to be called destroyTime (remember to enable paranoid for this to work)
-			deletedAt: 'destroyTime'  */
+	}, {
+		timestamps: true,
+		// don't delete database entries but set the newly added attribute deletedAt
+		// to the current date (when deletion was done). paranoid will only work if
+		// timestamps are enabled
+		paranoid: true,			
 	});
 	
 	return User;

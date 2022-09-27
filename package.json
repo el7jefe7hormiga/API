@@ -16,7 +16,7 @@
     "Authentication"
   ],
   "author": "aLL",
-  "license": "",
+  "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
@@ -24,6 +24,15 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.7.0",
+    "nodemon": "^2.0.19",
     "sequelize": "^4.44.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/el7jefe7hormiga/API.git"
+  },
+  "bugs": {
+    "url": "https://github.com/el7jefe7hormiga/API/issues"
+  },
+  "homepage": "https://github.com/el7jefe7hormiga/API#readme"
 }

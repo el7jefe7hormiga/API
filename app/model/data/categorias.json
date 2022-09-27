@@ -1,0 +1,113 @@
+{
+"categorias": [
+    {
+        "codigo" : "10",
+        "categoria" : "Bebidas",
+        "esHijoDe" : null
+    },
+    {
+        "codigo" : "1001",
+        "categoria" : "Bebidas 15%",
+        "esHijoDe" : "10"
+    },
+    {
+        "codigo" : "1003",
+        "categoria" : "Bebidas 0%",
+        "esHijoDe" : "10"
+    },
+    {
+        "codigo" : "20",
+        "categoria" : "Snack",
+        "esHijoDe" : null
+    },
+    {
+        "codigo" : "2001",
+        "categoria" : "Bimbo",
+        "esHijoDe" : "20"
+    },
+    {
+        "codigo" : "2002",
+        "categoria" : "Sabritas",
+        "esHijoDe" : "20"
+    },
+    {
+        "codigo" : "2003",
+        "categoria" : "Dulces",
+        "esHijoDe" : "20"
+    },
+    {
+        "codigo" : "2004",
+        "categoria" : "Nevería",
+        "esHijoDe" : "20"
+    },
+    {
+        "codigo" : "2005",
+        "categoria" : "Snack",
+        "esHijoDe" : "20"
+    },
+    {
+        "codigo" : "2006",
+        "categoria" : "Medicamentos",
+        "esHijoDe" : "20"
+    },
+    {
+        "codigo" : "30",
+        "categoria" : "Papelería",
+        "esHijoDe" : null
+    },
+    {
+        "codigo" : "3001",
+        "categoria" : "Papelería",
+        "esHijoDe" : "30"
+    },
+    {
+        "codigo" : "40",
+        "categoria" : "Servicios",
+        "esHijoDe" : null
+    },
+    {
+        "codigo" : "4001",
+        "categoria" : "Servicio",
+        "esHijoDe" : "40"
+    },
+    {
+        "codigo" : "4002",
+        "categoria" : "Copias",
+        "esHijoDe" : "40"
+    },
+    {
+        "codigo" : "4003",
+        "categoria" : "Soporte Tecnico",
+        "esHijoDe" : "40"
+    },
+    {
+        "codigo" : "50",
+        "categoria" : "Impresiones",
+        "esHijoDe" : null
+    },
+    {
+        "codigo" : "5001",
+        "categoria" : "Impresiones a Color",
+        "esHijoDe" : "50"
+    },
+    {
+        "codigo" : "5002",
+        "categoria" : "Impresiones en Negro",
+        "esHijoDe" : "50"
+    },
+    {
+        "codigo" : "60",
+        "categoria" : "Accesorios Y Equipo",
+        "esHijoDe" : null
+    },
+    {
+        "codigo" : "6001",
+        "categoria" : "Accs Y Eqs",
+        "esHijoDe" : "60"
+    },
+    {
+        "codigo" : "6002",
+        "categoria" : "Accs y Eqs Soporte",
+        "esHijoDe" : "60"
+    }
+]}

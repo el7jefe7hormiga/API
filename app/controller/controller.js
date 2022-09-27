@@ -19,7 +19,7 @@ exports.signin = (req, res) => {
 	return res.status(200).json({
 		"mensage": "Usuario NO Encontrado!!",
 		"enviado": dato,
-	}) */	
+	}) */
 	User.findOne({
 		where: { username: req.body.username }
 	}).then(user => {
@@ -27,7 +27,7 @@ exports.signin = (req, res) => {
 			//return res.status(404).send('Usuario No Encontrado !!');
 			return res.status(200).json({
 				"error": "Error",
-				"mensage": "Usuario NO Encontrado!!"
+				"mensage": "Usuario NO Encontrado!!" & req.body.username
 			})
 		}
 
@@ -44,6 +44,7 @@ exports.signin = (req, res) => {
 		var token = jwt.sign({ id: user.id }, config.secret, {
 		  expiresIn: 60*60*8 //=86400 // expires in 8 hours
 		});
+		
 		
 		// sacar los datos que se ocupan del usuario: id, email, username, nombre, roles
 		// y enviarlo.

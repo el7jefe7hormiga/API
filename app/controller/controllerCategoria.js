@@ -37,8 +37,8 @@ exports.verCategoria = (req, res) => {
     const param_id = req.params.id;
     Categoria.findOne({
         where: {
-            id: param_id,
-            eliminadoEl: null
+            codigo: param_id,
+            //eliminadoEl: null
         }
     })
         .then(categoria => {
@@ -90,7 +90,7 @@ exports.modificarCategoria = (req, res) => {
     const param_id = req.params.id;
     Categoria.update(req.body, {
         where: {
-            id: param_id,
+            codigo: param_id,
             eliminadoEl: null
         }
     }).then(categoria => {
@@ -114,7 +114,7 @@ exports.eliminarCategoria = (req, res) => {
         eliminadoEl: Date.now()
     }, {
         where: {
-            id: param_id,
+            codigo: param_id,
             eliminadoEl: null
         }
     }).then(() => {
@@ -172,17 +172,41 @@ exports.buscarCategoria = (req, res) => {
 // Mostrar las categorias Padres
 exports.Padres = (req, res) => {    
     Categoria.findAll(
-        { attributes: ['categoria'] },
-        { where: { EsPadre: "1" }},
-        { order: 'codigo' }
+        {
+            attributes: ['categoria'],
+            where: { EsPadre: "1" },
+            order: ['categoria']
+        }
     ).then(padres => {            
         res.status(200).json({
-            "mensage": "Mostrando las categorias padres...",
+            "mensage": "....Mostrando las categorias padres...",
             "padres": padres
         })
     }).catch(err => {
         res.status(200).json({
             "mensage": "No se pueden mostrar las categorias padres.",
+            "error": err
+        })
+    })
+}
+
+// Mostrar las categorias Hijos de...
+exports.HijosDe = (req, res) => {    
+    codigoPadre = req.params.padre
+    Categoria.findAll(
+        {
+            attributes: ['codigo','categoria','icon','imagen','eliminadoEl'],
+            where: { EsHijoDe: codigoPadre },
+            order: ['categoria']
+        }
+    ).then(padres => {            
+        res.status(200).json({
+            "mensage": "....Mostrando las categorias hijas de " & codigoPadre,
+            "padres": padres
+        })
+    }).catch(err => {
+        res.status(200).json({
+            "mensage": "No se pueden mostrar las categorias hijas de " & codigoPadre,
             "error": err
         })
     })

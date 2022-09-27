@@ -31,15 +31,15 @@ db.role = require('../model/role.model.js')(sequelize, Sequelize);
 db.role.belongsToMany(db.user, { through: 'usuario_roles', foreignKey: 'roleId', otherKey: 'usuarioId'});
 db.user.belongsToMany(db.role, { through: 'usuario_roles', foreignKey: 'usuarioId', otherKey: 'roleId'});
 // relacion Many-to-Many  user<+---+>role
-// un user puede tener muchos roles, y viceversa: un role puede estar en varios user's
+// un user puede tener muchos roles, y viceversa: un rol puede estar en varios user's
 // al crear las relaciones, me generan otra tabla:  [ usuario_roles ]
 
 
 db.producto = require('../model/producto.model.js')(sequelize, Sequelize);
 db.categoria = require('../model/categoria.model.js')(sequelize, Sequelize);
 // One-To-Many associations (hasMany)
-db.producto.belongsTo(db.categoria, { foreignKey: 'codigo_cat', targetKey: 'codigo' });
-db.categoria.hasMany(db.producto, { foreignKey: 'codigo_cat', sourceKey: 'codigo' });
+db.producto.belongsTo(db.categoria, { foreignKey: 'codigo_categoria', targetKey: 'codigo' });
+db.categoria.hasMany(db.producto, { foreignKey: 'codigo_categoria', sourceKey: 'codigo' });
 /* 
 RELACIONES: Un producto solo tiene una categoria
 y una categoria puede pertenecer a varios productos

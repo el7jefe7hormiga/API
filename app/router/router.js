@@ -31,7 +31,7 @@ module.exports = function(app) {
 	app.get('/api/caja', [authJwt.verifyToken, authJwt.isCajero], ctrlCaja.userContent)
 	app.get('/api/supervisor', [authJwt.verifyToken, authJwt.isSupvOrAdmin], ctrlSuperv.managementBoard)
 	app.get('/api/admin', [authJwt.verifyToken, authJwt.isAdmin], ctrlAdmin.adminBoard)
-	app.get('/api/admin/usuarios', [authJwt.verifyToken, authJwt.isAdmin], ctrlAdmin.verUsuarios)
+	app.get('/api/admin/usuarios', [authJwt.verifyToken, authJwt.isAdmin], ctrlAdmin.verUsuarios)	
 	app.post('/api/admin/signup', 
 		[authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkDuplicateUserNameOrEmail, verifySignUp.checkRolesExisted ], 
 		ctrlAdmin.signup)
@@ -73,6 +73,7 @@ module.exports = function(app) {
 	app.delete('/api/categoria/:id', [authJwt.verifyToken, authJwt.isSupvOrAdmin], ctrlCategorias.eliminarCategoria)
 	app.get('/api/categorias/padres', [authJwt.verifyToken], ctrlCategorias.Padres)
 	app.get('/api/categorias/:cat', [authJwt.verifyToken], ctrlCategorias.buscarCategoria)
+	app.get('/api/categorias/hijos/:padre', [authJwt.verifyToken], ctrlCategorias.HijosDe)	
 }
 /*
 	-- Para el primer usuario de la tabla (administrador), se generará automáticamente:  aLL:hormiga77
@@ -90,5 +91,5 @@ Body:
 Headers: [{
 	"key" : "x-access-token",
 	"value" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTg3MDk3MzUxLCJleHAiOjE1ODcxODM3NTF9.QqhSGNwCvp_HoHzdFwFW1J918Z3cu21Pufbaket1iUM","description":"","type":"text","enabled":true}]
-
+			   eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjYyMTcxMjc2LCJleHAiOjE2NjIyMDAwNzZ9.lHsdwMwMlWPtNw7FmHzFMKlBB96oje8WLFfJ1zaOkGs
 */

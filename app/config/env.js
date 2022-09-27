@@ -1,6 +1,6 @@
 const env = {
-  database: 'megainv',
-  username: 'root',
+  database: 'WEGAinv',
+  username: 'aLL',
   password: 'hormigaLL',
   host: 'localhost',
   dialect: 'mysql',
